@@ -1,0 +1,24 @@
+Detection Object Values for observation purposes
+
+<detectNet.Detection object>
+   -- ClassID: 17
+   -- Confidence: 0.921875
+   -- Left:    51.0938
+   -- Top:     130.693
+   -- Right:   348.75
+   -- Bottom:  348.75
+   -- Width:   297.656
+   -- Height:  218.057
+   -- Area:    64905.9
+   -- Center:  (199.922, 239.722)
+<detectNet.Detection object>
+   -- ClassID: 17
+   -- Confidence: 0.580566
+   -- Left:    51.4844
+   -- Top:     163.213
+   -- Right:   236.25
+   -- Bottom:  354.375
+   -- Width:   184.766
+   -- Height:  191.162
+   -- Area:    35320.2
+   -- Center:  (143.867, 258.794)

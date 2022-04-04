@@ -13,15 +13,19 @@ while True:
     ret, frame = cap.read()
     frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
 
+
     imgCuda = jetson.utils.cudaFromNumpy(frame)
+
     detections = net.Detect(imgCuda)
-    frame = jetson.utils.cudaToNumpy(imgCuda)
+    for d in detections:
+                print(d)
+
+    #frame = jetson.utils.cudaToNumpy(imgCuda)
+
 
     cv2.imshow('Input', frame)
-
-    c = cv2.waitKey(1)
-    if c == 27:
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-cap.release()
+cap.release() 
 cv2.destroyAllWindows()
