@@ -1,3 +1,4 @@
+from pydoc import classname
 import jetson.inference
 import jetson.utils
 import cv2
@@ -18,7 +19,13 @@ while True:
 
     detections = net.Detect(imgCuda)
     for d in detections:
-                print(d)
+        print(d)
+        x1,y1,x2,y2 = int(d.Left), int(d.Top), int(d.Right), int(d.Bottom)
+        classname = net.GetClassDesc(d.ClassID)
+        cv2.rectangle(frame, (x1,y1), (x2,y2), (255,0,255), 2)
+        cv2.putText(frame, classname, (x1+5, y1+15), cv2.FONT_HERSHEY_DUPLEX, 0.75, (255, 0, 255), 2)
+
+
 
     #frame = jetson.utils.cudaToNumpy(imgCuda)
 
