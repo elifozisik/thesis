@@ -16,7 +16,8 @@ class mnSSD():
         objects = []
         for d in detections:
             className = self.net.GetClassDesc(d.ClassID)
-            objects.append([className, d])
+            bbArea = int(d.Area)            
+            objects.append(bbArea)
 
             if display:
                 x1,y1,x2,y2 = int(d.Left), int(d.Top), int(d.Right), int(d.Bottom)
@@ -42,6 +43,8 @@ def main():
         frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
 
         objects = myModel.detect(frame, True)
+        if len(objects)!=0:
+            print(objects)
 
         cv2.imshow("Image", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):

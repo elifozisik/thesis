@@ -1,7 +1,10 @@
 import cv2
 import ObjectDetectionMNV2 as ObjDet
+import os
+
 
 cap = cv2.VideoCapture('nvarguscamerasrc ! video/x-raw(memory:NVMM), width=1280, height=720, format=(string)NV12, framerate=(fraction)60/1 ! nvvidconv flip-method=2 ! video/x-raw, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink', cv2.CAP_GSTREAMER)
+
 
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
@@ -22,8 +25,12 @@ while True:
             count-=1
 
         if count > 72 :
-            print(objects, max(objects),"görüntü")
-            count = 90
+
+            dur = "30"
+            bashcmd = "timeout "+ dur + " gst-launch-1.0 udpsrc do-timestamp=true port= 5600 caps='application/x-rtp' ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 ! videoflip method=rotate-180 ! xvimagesink sync=false"
+            os.system(bashcmd)
+            count = 5
+            
         elif count < 0:
             count = 0
             print("durdu")
