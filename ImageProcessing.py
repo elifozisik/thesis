@@ -19,12 +19,12 @@ while True:
     objects = myModel.detect(frame, True)
 
     if len(objects)!=0:
-        if max(objects) > ((640*360)/3):
+        if max(objects) > ((640*360)/26):
             count+=1
         else:
             count-=1
 
-        if count > 72 :
+        if count > 48 :
 
             dur = "30"
             bashcmd = "timeout "+ dur + " gst-launch-1.0 udpsrc do-timestamp=true port= 5600 caps='application/x-rtp' ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 ! videoflip method=rotate-180 ! xvimagesink sync=false"
