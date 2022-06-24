@@ -26,16 +26,15 @@ while True:
 
         if count > 48 :
 
-            dur = "30"
-            bashcmd = "timeout "+ dur + " gst-launch-1.0 udpsrc do-timestamp=true port= 5600 caps='application/x-rtp' ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 ! videoflip method=rotate-180 ! xvimagesink sync=false"
+            duration = "30"
+            bashcmd = "timeout "+ duration + " gst-launch-1.0 udpsrc do-timestamp=true port= 5600 caps='application/x-rtp' ! rtph264depay ! h264parse disable-passthrough=true ! avdec_h264 ! videoflip method=rotate-180 ! xvimagesink sync=false"
             os.system(bashcmd)
             count = 5
-            
+           
         elif count < 0:
             count = 0
-            print("durdu")
-        
 
+        
     cv2.imshow("Image", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break 
